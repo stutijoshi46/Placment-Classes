@@ -1,5 +1,5 @@
 #include<stdio.h>
-void SelectionSort(int[],int);
+void InsertionSort(int[],int);
 void Swap(int*,int*);
 void Display(int[],int);
 int main(){
@@ -10,24 +10,24 @@ int main(){
 	{
 		scanf("%d",&arr[i]);
 	}
-	SelectionSort(arr,n);
+	InsertionSort(arr,n);
 	Display(arr,n);
 	return 0;
 }
-void SelectionSort(int arr[],int n)
+void InsertionSort(int arr[],int n)
 {
-	int i,j;
-	for(i=0;i<n-1;i++)
-	{ int temp=arr[i],index=i;
-		for(j=i+1;j<n;j++)
+	int i,j,temp;
+	for(i=1;i<n;i++)
+	{
+		temp=arr[i];
+		j=i-1;
+		while(j>=0 && arr[j]>temp)
 		{
-			if(arr[j]<temp)
-			{
-				temp=arr[j];
-				index=j;
+			arr[j+1]=arr[j];
+			j--;
 		}
-		Swap(&arr[i],&arr[index]);
-		}
+		Swap(&arr[j],&arr[j+1]);
+		arr[j+1]=temp;
 	}
 }
 void Swap(int*a,int*b)
